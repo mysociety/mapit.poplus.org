@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>API overview</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/global.css">
+    <link href='http://fonts.googleapis.com/css?family=Signika:400,600,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/assets/js/modernizr.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/sbp2hrv.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="container">
+        <a href="/" class="poplus-logo-tab">Poplus</a>
+        <a href="/" class="site-title"><span class="component-title">MapIt</span><span class="dot-poplus">.Poplus</span></a>
+        <div class="primary-navigation-position">
+            <nav role="navigation" class="primary-navigation nav-collapse">
+                <ul>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/docs/">Documentation</a></li>
+                    <li><a href="/about/licensing.html">License</a></li>
+                    <li><a href="https://github.com/mysociety/mapit">Github</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+        <div class="page-title page-title--inner-page">
+                <div class="container">
+                    <h1>API overview</h1>
+                </div>
+            </div>
+            <div class="container">
+                <div class="layout-inner-page">
+                    <div class="column-content">
+                        <div class="main" role="main">
+                                    <section id="api-intro">
+          <p>The documentation below is for developers who want
+          to use MapIt as a web service, describing its REST
+          API. If that’s all Greek to you, please see
+          <a href="/overview">our page for non-developers</a>.</p>
+        </section>
+
+
+
+        <section id="api-by_point">
+            <h2>Lookup by point</h2>
+            <dl>
+                <dt>URL:</dt>
+                <dd><ul>
+                    <li>/point/<i>[SRID]</i>/<i>[x]</i>,<i>[y]</i></li>
+                    <li>/point/<i>[SRID]</i>/<i>[x]</i>,<i>[y]</i>/box</li>
+                </ul>
+                </dd><dt>Parameters:</dt>
+                <dd>
+                <p><i>SRID</i> is a unique number referring to a particular
+                co-ordinate system;
+
+                the one you probably are interested in is
+                4326 for WGS84 normal lon/lat.
+
+                </p>
+                <p><i>x</i> and <i>y</i> are the co-ordinates of the point in the co-ordinate
+                system; note that <i>x,y</i> means <i>longitude,latitude</i>.</p>
+                </dd>
+                <dt>Optional query parameters:</dt>
+                <dd>
+        <ul>
+            <li><i>type</i>, to restrict results to a particular area type or types (multiple types separated by commas);
+            </li><li><i>generation</i>, to return results for a previous generation.
+        </li></ul>
+                </dd>
+
+                <dt>Returns:</dt>
+                <dd>
+                <p>A hash of the areas that the point is contained within. If
+                the /box version is used, only the area bounding boxes are
+                considered.
+                </p>
+
+                </dd><dt>Example:</dt>
+
+
+
+<dd><a href="/point/4326/8.55,47.366667.html">Example of areas containing (47.366667,8.55)</a>.</dd>
+
+            </dl>
+        </section>
+
+
+
+
+        <section id="api-by_area_id">
+            <h2>Lookup by area</h2>
+            <dl>
+                <dt>URL:</dt>
+                <dd><ul>
+
+                    <li>/area/<i>[area ID]</i>
+
+
+                    </li><li>/code/osm_rel/<i>[OSM relation ID]</i>
+                    </li><li>/code/osm_way/<i>[OSM way ID]</i>
+
+                    </li><li>/area/<i>[area ID]</i>/geometry
+                    </li><li>/area/<i>[area ID]</i>.<i>[kml or geojson or wkt]</i>
+                    </li><li>/area/<i>[SRID]</i>/<i>[area ID]</i>.<i>[kml or json or wkt]</i>
+                </li></ul></dd>
+                <dt>Optional query parameters:</dt>
+                <dd><i>simplify_tolerance</i>, a floating point parameter to simplify the polygons returned.</dd>
+                <dt>Returns:</dt>
+                <dd>Information on a particular area, including name, type, parent, and any associated codes
+                (see <a href="#general">below for details</a>). The code lookups redirect to the area URI.
+
+                geometry returns centroid, extent and area of the area.
+                </dd>
+                <dt>Examples:</dt>
+                <dd>
+
+
+
+<ul>
+    <li>Information held on Paris:
+    <a href="/area/29746.html">/area/29746.html</a>
+    </li><li>A KML file of Paris:
+    <a href="/area/29746.kml">/area/29746.kml</a>
+    (on a <a href="http://maps.google.co.uk/maps?q=http://global.mapit.mysociety.org/area/29746.kml">Google Map</a>)
+</li></ul>
+
+                </dd>
+            </dl>
+
+        </section>
+        <section id="api-related_areas">
+
+            <h2>Lookup related areas</h2>
+            <dl>
+                <dt>URL:</dt>
+                <dd><ul>
+                    <li>/area/<i>[area ID]</i>/children
+                    </li><li>/area/<i>[area ID]</i>/touches
+
+                    </li><li>/area/<i>[area ID]</i>/overlaps
+                    </li><li>/area/<i>[area ID]</i>/covers
+                    </li><li>/area/<i>[area ID]</i>/covered
+                    </li><li>/area/<i>[area ID]</i>/coverlaps
+                    </li><li>/area/<i>[area ID]</i>/intersects
+
+                </li></ul></dd>
+                <dt>Optional query parameters:</dt>
+                <dd><ul>
+                    <li><i>type</i>, to restrict results to a particular type or types.</li>
+                    <li><i>generation</i>, to return results from a previous generation (children only).</li>
+                </ul></dd>
+                <dt>Returns:</dt>
+                <dd>A hash of areas that match the requested lookup.
+                </dd><dt>Examples:</dt>
+                <dd>
+
+
+
+<ul>
+    <li>All the areas touching Cambridgeshire:
+    <a rel="nofollow" href="/area/25495/touches.html">/area/25495/touches.html</a>
+    </li><li>All areas overlapping Cambridgeshire:
+    <a rel="nofollow" href="/area/25495/overlaps.html">/area/25495/overlaps.html</a>
+    </li><li>All areas covered by Cambridgeshire:
+    <a rel="nofollow" href="/area/25495/covers.html">/area/25495/covers.html</a>
+    </li><li>All areas covering Cambridgeshire:
+    <a rel="nofollow" href="/area/25495/covered.html">/area/25495/covered.html</a>
+    </li><li>All areas covered by or overlapping Cambridgeshire:
+    <a rel="nofollow" href="/area/25495/coverlaps.html">/area/25495/coverlaps.html</a>
+    </li><li>All areas that intersect Cambridgeshire:
+    <a rel="nofollow" href="/area/25495/intersects.html">/area/25495/intersects.html</a>
+</li></ul>
+
+                </dd>
+            </dl>
+        </section>
+
+
+
+    <section id="api-multiple_areas">
+        <h2>Lookup multiple areas</h2>
+        <dl>
+            <dt>URL:</dt>
+            <dd><ul>
+                <li>/areas/<i>[area IDs]</i>
+                </li><li>/areas/<i>[area IDs]</i>/geometry
+                </li><li>/areas/<i>[type(s)]</i>
+                </li><li>/areas/<i>[name prefix]</i>
+            </li></ul></dd>
+            <dt>Parameters:</dt>
+            <dd>Separate multiple parameters with commas.
+            Name prefix means it will return any area that starts with the string given.
+            The current area types are:
+
+
+
+    <small>O01 to O12</small>.
+
+            </dd>
+            <dt>Optional query parameters:</dt>
+            <dd><ul>
+                <li><i>generation</i>, to return areas in that generation (type and name lookups only).</li>
+                <li><i>min_generation</i>, to return areas since that generation (type and name lookups only).</li>
+                <li><i>type</i>, to restrict results to a type or types (multiple separated by commas; name lookup only).</li>
+            </ul></dd>
+
+            <dt>Returns:</dt>
+            <dd>
+            <p>Information on multiple areas that match the parameters provided, as a dictionary indexed by area ID.
+            The geometry argument lets you fetch multiple single area geometry results at once.
+            </p>
+            </dd>
+            <dt>Examples:</dt>
+            <dd>
+
+
+
+            <ul>
+                <li>All areas starting “Ven”: <a href="/areas/Ven.html">/areas/Ven.html</a>
+                </li><li>Information on areas 29746 and 25495: <a href="/areas/29746,25495.html">/areas/29746,25495.html</a>
+                </li><li>All level 2 (O02) areas: <a href="/areas/O02.html">/areas/O02.html</a>
+            </li></ul>
+
+            </dd>
+        </dl>
+    </section>
+
+        <section id="api-generations">
+    <h2>Generations</h2>
+    <dl>
+        <dt>URL:</dt>
+        <dd>/generations</dd>
+
+        <dt>Returns:</dt>
+        <dd>A list of all generations in this installation of MapIt.
+
+
+
+    </dd></dl>
+</section>
+
+
+        <section id="general">
+            <h2>General information
+
+            <dl>
+                <dt>Format</dt>
+                <dd>
+                <p>All calls return JSON, you can generally get an HTML representation
+                by sticking .html on the end.</p>
+                <p>Whenever an area is returned from MapIt, it is as a
+                dictionary with the following keys: id, name, country, type,
+                parent_area, generation_low, generation_high, codes.</p>
+                </dd>
+                <dt>Historical areas</dt>
+                <dd>By default, calls will return active areas; for some calls
+                you may specify a previous generation to look up instead.
+
+                </dd>
+
+            </dl>
+        </section>
+
+        <section id="about-mapit">
+            <h2>About MapIt</h2>
+
+            <p>MapIt was written back in 2003 as a postcode lookup to power the
+            original <a href="http://www.mysociety.org/">mySociety</a> sites
+            such as <a href="http://www.writetothem.com/">WriteToThem</a>. Over
+            time it gained features such as point lookup (for
+            <a href="http://www.fixmystreet.com/">FixMyStreet</a>), and when
+            Ordnance Survey data became freely available in 2010, it was
+            rewritten and made public for the whole UK.
+
+
+
+            Versions have appeared in other countries, such as
+            <a href="http://mapit.nuug.no/">Norway</a>, and in 2012 we released this
+            global version based on OpenStreetMap data.
+
+
+            </p>
+
+        </section>
+
+
+
+                        </div>
+                    </div>
+                    <div class="column-navigation">
+                        <nav class="inner-navigation">
+    <ul>
+        <li><a href="/about/"><h2>About</h2></a></li>
+        <li><a href="/about/privacy.html">Privacy</a></li>
+        <li><a href="/about/licensing.html">Usage &amp; licensing</a></li>
+        <li><a href="/docs/"><h2>Documentation</h2></a></li>
+    </ul>
+</nav>
+
+                    </div>
+                </div>
+            </div>
+
+        <div class="site-footer">
+    <div class="container">
+        <div class="about-poplus">
+            <a href="#" class="poplus-full-logo">Poplus</a>
+            <p>Poplus is an international community of activists, citizens and developers.</p>
+            <p>Together we are creating standardised, internationalised, interoperable, open-source Components, to make it easier to build websites that empower citizens, no matter where you are based.</p>
+            <ul class="list-of-poplus-components">
+                <li><a href="#">MapIt</a></li>
+                <li><a href="#">PopIt</a></li>
+                <li><a href="#">WriteIt</a></li>
+                <li><a href="#">BillIt</a></li>
+                <li><a href="#">SayIt</a></li>
+            </ul>
+        </div>
+        <div class="poplus-founders">
+            <p>Poplus was proudly founded by</p>
+            <div class="founder-images">
+                <a href="#" class="ci-founder-logo">Ciudadano Inteligente</a>
+                <a href="#" class="mysociety-founder-logo">mySociety</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <script src="/assets/js/responsive-nav.min.js"></script>
+        <script>
+          var nav = responsiveNav(".nav-collapse");
+        </script>
+
+    </body>
+</html>
