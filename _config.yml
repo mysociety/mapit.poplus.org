@@ -1,4 +1,4 @@
 name: mapit.poplus.org
 markdown: redcarpet
 pygments: true
-baseurl: /mapit.poplus.org
+baseurl:
