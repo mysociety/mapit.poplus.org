@@ -4,7 +4,7 @@ The promotional site for the Poplus component, MapIt. Compiled using Jekyll and 
 
 ## Local development
 
-The templates in `_layouts` and the majority of the styles in `assets/sass/` should be kept in sync with other poplus.org projects like https://github.com/mysociety/popit.poplus.org and https://github.com/mysociety/mapit.poplus.org
+The MapIt site inherits almost all of its styling from the shared [poplus-theme](https://github.com/mysociety/poplus-theme) submodule. You should not edit the files inside the submodule directory (`/theme`) unless you want those changes to be shared with all other Poplus component sites.
 
 Styling changes specific to the MapIt site should be made in `assets/sass/_mapit-styles.scss`.
 
