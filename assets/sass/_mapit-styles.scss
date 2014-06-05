@@ -1,0 +1,6 @@
+.hero {
+  background-image: url('../assets/img/hero-a.jpg');
+  @media (min-width: $medium-screen) {
+    background-image: url('../assets/img/hero-b.jpg');
+  }
+}

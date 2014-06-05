@@ -1018,3 +1018,9 @@ a.contact-us-footer-link {
   .left-heading--no-border {
     padding-top: 2.8em;
     border-top: none; } }
+
+.hero {
+  background-image: url("../assets/img/hero-a.jpg"); }
+  @media (min-width: 33.75em) {
+    .hero {
+      background-image: url("../assets/img/hero-b.jpg"); } }
