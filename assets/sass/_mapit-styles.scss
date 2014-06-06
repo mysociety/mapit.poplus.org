@@ -53,3 +53,24 @@
 .example-mapit-icon {
     max-width: 5.1875em;
 }
+
+.inline-links a {
+  display: inline-block;
+}
+
+.inner-navigation {
+  h2 {
+    color: $colour_black;
+  }
+
+  ul ul ul {
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+
+  .active {
+    & > a {
+      color: $colour_black;
+    }
+  }
+}

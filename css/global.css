@@ -1066,8 +1066,9 @@ a.contact-us-footer-link {
     background-color: #cad2df; }
     .final-call-to-action .button--secondary:hover, .final-call-to-action .button--secondary:active, .final-call-to-action .button--secondary:focus {
       background-color: #bbc5d5; }
-  .final-call-to-action [class*='button--'] + [class*='button--'] {
-    margin-left: 2em; }
+
+[class*='button--'] + [class*='button--'] {
+  margin-left: 1.5em; }
 
 .hero {
   background-image: url("../assets/img/hero-a.jpg"); }
@@ -1108,3 +1109,14 @@ a.contact-us-footer-link {
 
 .example-mapit-icon {
   max-width: 5.1875em; }
+
+.inline-links a {
+  display: inline-block; }
+
+.inner-navigation h2 {
+  color: #333333; }
+.inner-navigation ul ul ul {
+  font-size: 0.8em;
+  font-weight: 600; }
+.inner-navigation .active > a {
+  color: #333333; }
