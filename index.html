@@ -6,14 +6,13 @@ title: MapIt
 <div class="hero">
     <div class="container">
         <div class="hero__component-introduction">
-            <h1 class="hero__component-title">Map geographic points to administrative boundaries</h1>
+            <h1 class="hero__component-title">Solve your app&rsquo;s administrative boundary problems, easily</h1>
             <div class="hero__component-description">
-                <p>Look up the co-ordinates of a point on Earth and find out what country, region, city, constituency, or state it lies within.</p>
-                <p>It’s also great for looking up the shapes of all those boundaries. Based on source data from the totally amazing OpenStreetMap project.</p>
+                <p>If your app or website needs to connect locations with administrative areas, like wards or counties, MapIt can save you a lot of time.</p>
+                <p>Available as a hosted API or a self-deployed web service, to suit your needs.</p>
             </div>
             <div class="hero__component-actions">
-                <a href="/docs/" class="button--primary">Get started</a>
-                <a href="http://global.mapit.mysociety.org" class="button--secondary">See it in action</a>
+                <a href="/docs/" id="get-started" class="button--primary">Get started</a>
             </div>
         </div>
     </div>
@@ -28,20 +27,20 @@ title: MapIt
         <div class="content-column">
             <div class="grid-row">
                 <div class="column-one-of-four">
-                    <h3>A zero-hassle hosted mapping service&hellip;</h3>
-                    <p>Call our public API to get information about any point on the globe. We look after versioning and updates, so you don&rsquo;t have&nbsp;to.</p>
+                    <h3>MapIt turns geographic points into areas</h3>
+                    <p>So 48.85, 2.35 becomes Paris.</p>
                 </div><!--
                 --><div class="column-one-of-four">
-                    <h3>&hellip;And a Django app for ultimate flexibility</h3>
-                    <p>Want to collate detailed local geographic data, and host it near to your customers? Use MapIt as a component in your own site.</p>
+                    <h3>Is all about the APIs</h3>
+                    <p>Whether you self-host or use a hosted version, you get the data RESTfully.</p>
                 </div><!--
                 --><div class="column-one-of-four">
-                    <h3>The easy way to work with geographic data</h3>
-                    <p>Geographic data is complex, and changes regularly. Let MapIt do the hard work of querying and organising it&nbsp;all.</p>
+                    <h3>Can be self-hosted</h3>
+                    <p>Deploy an instance and fill it with whatever boundaries you want.</p>
                 </div><!--
                 --><div class="column-one-of-four">
-                    <h3>A powerful API</h3>
-                    <p>Both hosted and self-hosted versions of MapIt have a REST API that is fast and easy to use. Access your data as KML, GeoJSON, or HTML web pages.</p>
+                    <h3>Is also available hosted</h3>
+                    <p>Versions pre-loaded with data exist for various areas.</p>
                 </div>
             </div>
         </div>
@@ -79,7 +78,18 @@ title: MapIt
 <div class="final-call-to-action">
     <div class="container">
         <h2>Collect and query geographic data like a pro with MapIt</h2>
-        <a href="#" class="button--primary">Try out MapIt Global</a>
-        <a href="#" class="button--secondary">Host MapIt yourself</a>
+        <a href="http://code.mapit.mysociety.org/" class="button--primary">Host MapIt yourself</a>
+        <a href="http://global.mapit.mysociety.org/" class="button--secondary">Learn about hosted versions</a>
     </div>
 </div>
+
+<script type="text/javascript">
+$(function(){
+  $('#get-started').on('click', function(e){
+    e.preventDefault()
+    $('body, html').animate({
+      scrollTop: $(".final-call-to-action").offset().top
+    }, 750)
+  })
+})
+</script>
