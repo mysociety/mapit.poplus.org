@@ -1075,6 +1075,9 @@ a.contact-us-footer-link {
     .hero {
       background-image: url("../assets/img/hero-b.jpg"); } }
 
+.hero__component-title {
+  max-width: none; }
+
 .example-mapit {
   padding-top: 5em;
   background-image: url("../assets/img/example-mapit-icon.png");

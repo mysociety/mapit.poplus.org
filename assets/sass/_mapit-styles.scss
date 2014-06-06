@@ -5,6 +5,10 @@
   }
 }
 
+.hero__component-title {
+  max-width: none; // no need to force linebreak in ultra long title
+}
+
 .example-mapit {
   padding-top: 5em;
   background-image: url('../assets/img/example-mapit-icon.png');
