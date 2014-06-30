@@ -11,9 +11,9 @@ directory contains an example GeoDjango project using that app. Other top-level
 things are mostly to fit within mySociety's standard deployment, or country
 specific data, one-off scripts and so on.
 
-MapIt has been installed on Debian lenny and squeeze, and on Ubuntu from 10.04
-onwards. If GeoDjango and [PostGIS] run on it, it should theoretically be okay;
-do let us know of any problems.
+MapIt has been installed on Debians from lenny to wheezy, and on Ubuntu from
+10.04 onwards. If GeoDjango and [PostGIS] run on it, it should theoretically be
+okay; do let us know of any problems.
 
 Installation
 ------------
