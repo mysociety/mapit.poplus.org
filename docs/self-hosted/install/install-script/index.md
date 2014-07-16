@@ -12,7 +12,7 @@ make significant changes to your server's setup, including modifying
 your nginx setup, creating a user account, creating a database,
 installing new packages etc.*
 
-The script to run is called [`install-site.sh`, in our `commonlib` repository](https://raw.github.com/mysociety/commonlib/master/bin/install-site.sh).
+The script to run is called [`install-site.sh`, in our `commonlib` repository](https://github.com/mysociety/commonlib/raw/master/bin/install-site.sh).
 That script's usage is as follows:
 
     Usage: ./install-site.sh [--default] <SITE-NAME> <UNIX-USER> [HOST]
@@ -34,7 +34,7 @@ hostname `mapit.example.org`, creating a virtualhost just for that
 hostname, you could download and run the script with:
 
 {% highlight bash %}
-curl -O https://raw.github.com/mysociety/commonlib/master/bin/install-site.sh
+curl -L -O https://github.com/mysociety/commonlib/raw/master/bin/install-site.sh
 sudo sh install-site.sh mapit mapit mapit.example.org
 {% endhighlight %}
 
