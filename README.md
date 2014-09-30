@@ -42,7 +42,7 @@ git merge master
 git push origin gh-pages
 ```
 
-Your changes will then be visible at http://mysociety.github.io/mapit.poplus.org and, once we’ve sorted out DNS, http://mapit.poplus.org too.
+Your changes will then be visible at http://mapit.poplus.org
 
 Remember to switch back into the `master` branch (or a feature branch) when continuing to make changes after deployment!
 
