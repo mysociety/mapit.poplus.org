@@ -19,7 +19,7 @@ Here are the basic instructions to install data from OSM:
        ./manage.py mapit_NO_import_osm \
            --commit ../../data/cache/*.kml
        ./manage.py mapit_import_area_unions \
-           --commit data/norway/regions.csv
+           --commit mapit_no/data/regions.csv
        ./manage.py mapit_generation_activate --commit
 
 Please see below for information on where osm_to_kml gets its OSM data from.
@@ -50,9 +50,9 @@ Alternatively, here are the basic instructions to install the N5000 data:
        # Perhaps, when 7-area-unions branch is merged, with
        #   ./manage.py mapit_create_area_unions --area-type-code NFY \
        #     --region-id-field 1 --region-name-field 2 --country O \
-       #     --commit ../data/norway/kommune2fylke.csv
+       #     --commit ../mapit_no/data/kommune2fylke.csv
        ./manage.py mapit_import_area_unions \
-           --commit data/norway/regions.csv
+           --commit mapit_no/data/regions.csv
        ./manage.py mapit_generation_activate --commit
 
 You should now be able to go to /point/4326/10.756389,59.949444 and have Oslo
@@ -76,5 +76,5 @@ in the mapit web pages and JSON data, while the other names are stored in the
 database.
 
 The kommune and fylke number (ID) is fetched from a the tag 'ref' in OSM, and
-if it is missing a static list of such IDs in mapit/data/norway/ids.csv is
+if it is missing a static list of such IDs in mapit_no/data/ids.csv is
 consulted using the name (for fylke) or name+fylke (for kommune) as the key.
