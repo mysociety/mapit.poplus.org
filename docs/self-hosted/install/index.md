@@ -85,11 +85,11 @@ Installation standalone with the example project
         cp conf/general.yml-example conf/general.yml
 Now edit `conf/general.yml` to point to your local postgresql database, and
 edit the other settings as per the documentation given in that file. If you
-don't know what `SRID` to use, delete that line or set it to `4326`. `COUNTRY`
-is optional and can be used for e.g. differing sorts of postcode (zipcode)
-validation &ndash; if you look at the country files in `mapit/countries/` you
-can see how to add specialised country-specific functions to validate postcodes
-etc.
+don't know what `AREA_SRID` to use, delete that line or set it to `4326`.
+`COUNTRY` is optional and can be used for e.g. differing sorts of postcode
+(zipcode) validation &ndash; if you look at the country files in
+`mapit/countries/` you can see how to add specialised country-specific
+functions to validate postcodes etc.
 
   If you're going to be importing big datasets, make sure that `DEBUG` is
 `False`; otherwise, you'll run out of memory as it tries to remember all the

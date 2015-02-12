@@ -33,7 +33,7 @@ file to set a couple of parameters.  That configuration file is
     mapit@ip-10-58-191-98:~/mapit$ nano conf/general.yml
 
 You should set `BUGS_EMAIL` to your email address.  You should also
-consider the `SRID` and `COUNTRY` settings, as described in the
+consider the `AREA_SRID` and `COUNTRY` settings, as described in the
 [manual installation instructions](/install/).
 
 Note if you change the SRID at this point, you will need to revert and then

@@ -49,7 +49,7 @@ website, accessible via the hostname you supplied to the script.
 
 You should take a look at the configuration file in
 `mapit/conf/general.yml` under `/var/www/<host>`. In particular, you should set `BUGS_EMAIL`
-to your email address.  You should also consider the `SRID` and
+to your email address.  You should also consider the `AREA_SRID` and
 `COUNTRY` settings, as described in the [manual installation
 instructions](/install/).
 
