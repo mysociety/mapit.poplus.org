@@ -56,7 +56,7 @@ What to run when new data is released:
 * Boundary-Line: Create a control file, `mapit_UK_import_boundary_line` and
   `mapit_UK_find_parents`.
 
-You can manually increase the generation_high_id when something is new and
+You can manually increase the `generation_high_id` when something is new and
 something else isn't (most commonly, a new Boundary-Line means a new generation
 for Great Britain, and you can then increase the Northern Ireland boundaries
 manually to be in the new generation).
