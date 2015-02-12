@@ -57,6 +57,7 @@ Note if you change the SRID at this point, you will need to revert and then
 re-migrate the database as it will already have been set up with the initial
 SRID:
 
+    source ../virtualenv-mapit/bin/activate
     ./manage.py migrate mapit zero
     ./manage.py migrate mapit
 

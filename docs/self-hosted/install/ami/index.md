@@ -40,6 +40,7 @@ Note if you change the SRID at this point, you will need to revert and then
 re-migrate the database as it will already have been set up with the initial
 SRID:
 
+    source ../virtualenv-mapit/bin/activate
     ./manage.py migrate mapit zero
     ./manage.py migrate mapit
 
@@ -55,6 +56,7 @@ example:
 
     ubuntu@ip-10-64-6-199:~$ sudo su - mapit
     mapit@ip-10-64-6-199:~$ cd mapit/project/
+    mapit@ip-10-64-6-199:~$ source ../virtualenv-mapit/bin/activate
     mapit@ip-10-64-6-199:~/mapit/project$ ./manage.py createsuperuser
     Username (Leave blank to use 'mapit'): mapitadmin
     E-mail address: whoever@example.org
