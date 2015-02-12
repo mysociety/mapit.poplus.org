@@ -3,8 +3,8 @@ layout: inner-page
 title: MapIt install script
 ---
 
-If you have a new installation of Debian squeeze or Ubuntu precise,
-you can use an install script to set up a basic installation of
+If you have a new installation of Debian squeeze or wheezy, or Ubuntu precise
+or trusty, you can use an install script to set up a basic installation of
 MapIt on your server.
 
 *Warning: only use this script on a newly installed server - it will

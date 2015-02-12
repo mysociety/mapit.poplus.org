@@ -9,7 +9,7 @@ up web applications, but there are two other options that may be
 easier:
 
 * [A MapIt AMI for Amazon EC2](ami)
-* [An install script for Debian squeeze or Ubuntu precise servers](install-script)
+* [An install script for Debian or Ubuntu servers](install-script)
 
 If you prefer to set up each required component of MapIt yourself,
 proceed with the instructions below.
@@ -38,11 +38,10 @@ necessary, depending on your version of PostGIS, but do check. \]
 
 ### 2. Installing other required packages
 
-You will also need a couple of other Debian packages, so install them:
+You will also need a couple of other packages, so install them:
 
-    sudo apt-get install python-yaml memcached python-memcache git-core
+    sudo apt-get install python-gdal ruby-sass
 
-You will also need to be using South to manage schema migrations.
 
 Installation as a Django app
 ----------------------------
@@ -75,6 +74,10 @@ use MapIt from within your project like any normal Django app:
 Installation standalone with the example project
 ------------------------------------------------
 
+* The example project uses memcached, so install that:
+
+        sudo apt-get install memcached python-memcache
+
 * A standard git clone will get you the repository:
 
         git clone git://github.com/mysociety/mapit.git
@@ -91,7 +94,7 @@ don't know what `AREA_SRID` to use, delete that line or set it to `4326`.
 `mapit/countries/` you can see how to add specialised country-specific
 functions to validate postcodes etc.
 
-  If you're going to be importing big datasets, make sure that `DEBUG` is
+    If you're going to be importing big datasets, make sure that `DEBUG` is
 `False`; otherwise, you'll run out of memory as it tries to remember all the
 SQL queries made during an import.
 
@@ -105,7 +108,7 @@ required packages:
 
         virtualenv .venv
         source .venv/bin/activate
-        pip install -r requirements.txt
+        pip install -e .
 
 * Generate the CSS from the provided SASS:
 
@@ -115,7 +118,6 @@ required packages:
 * Create the database tables (do add an admin user when prompted, though you
   can add one at any time with `./manage.py createsuperuser`):
 
-        ./manage.py syncdb
         ./manage.py migrate mapit
 
 * Run the development server
