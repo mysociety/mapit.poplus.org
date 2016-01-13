@@ -9,8 +9,7 @@ Here are the basic instructions to install data from OSM:
 2. cd bin and run `python osm_to_kml` to fetch OSM XML and convert it to KML.
 3. Change to the project directory, and create database tables:
 
-        ./manage.py syncdb
-        ./manage.py migrate mapit
+        ./manage.py migrate
 4. Run the following (you can run anything without --commit to do a dry run):
 
         ./manage.py mapit_generation_create \
@@ -32,8 +31,7 @@ Alternatively, here are the basic instructions to install the N5000 data:
    and save/unzip in the data directory.
 3. Change to the project directory, and create database tables:
 
-        ./manage.py syncdb
-        ./manage.py migrate mapit
+        ./manage.py migrate
 
 4. Run the following (you can run anything without --commit to do a dry run):
 

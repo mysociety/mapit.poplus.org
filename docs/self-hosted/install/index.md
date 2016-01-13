@@ -64,7 +64,6 @@ use MapIt from within your project like any normal Django app:
   * Add `MAPIT_RATE_LIMIT` &ndash; a list of IP addresses or User Agents excluded
     from default rate limiting
 * Set up the new database tables:
-  * `./manage.py syncdb`
   * `./manage.py migrate`
 * Add a line to your `urls.py` patterns pointing at `mapit.urls`, for example:
 
