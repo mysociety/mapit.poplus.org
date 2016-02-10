@@ -3,13 +3,12 @@ layout: inner-page
 title: Importing UK boundary data
 ---
 
-Here are the basic instructions to install OS OpenData and ONSPD:
+Here are the basic instructions to install UK data from OS OpenData, ONSPD, and OSNI Open Data:
 
 1. AREA_SRID in conf/general.yml should be 27700 (as Boundary-Line shapes are
    in the OSGB projection).
-2. Download the latest Code-Point Open, Boundary-Line and ONSPD from
-   <http://parlvid.mysociety.org:81/os/>, and save/unzip in the data directory.
-3. Change to the project directory, and create database tables (if you haven't
+
+2. Change to the project directory, and create database tables (if you haven't
    already done this):
 
         ./manage.py migrate
@@ -18,7 +17,75 @@ Here are the basic instructions to install OS OpenData and ONSPD:
    will need to `./manage.py migrate mapit zero` and then `./manage.py migrate
    mapit` again to get the right SRID in the database.
 
-4. Run the following in order:
+For notes on what was done to create generations as you can see on
+<http://mapit.mysociety.org/>, see the end of this file.
+
+For data released after Nov 2015
+--------------------------------
+
+We use ONSPD to import all uk postcodes, Boundary-Line to import GB shapes, and OSNI to import NI shapes.  Code Point is not used.
+
+1. Download the latest Boundary-Line, ONSPD, and OSNI data from
+   <http://parlvid.mysociety.org/os/>, and save/unzip in the data directory.  You need to unzip the OSNI data twice as it contains zipped folders.
+
+2. Run the following in order:
+
+{% highlight bash %}
+./manage.py mapit_generation_create --commit --desc "Initial import."
+./manage.py loaddata uk
+./manage.py mapit_UK_import_boundary_line \
+    --control=mapit_gb.controls.first-gss --commit \
+    `ls ../data/Boundary-Line/Data/GB/**/*.shp | \
+    grep -v high_water | \
+    grep -Ev Supplementary_\[Historical\|Ceremonial\]`
+./manage.py mapit_UK_import_osni --control=mapit_gb.controls.first-gss \
+    --wmc=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__Parliamentary_Constituencies_2008/OSNI_Open_Data_Largescale_Boundaries__Parliamentary_Constituencies_2008.shp \
+    --wmc-srid=4326 \
+    --lgd=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__Local_Government_Districts_2012/OSNI_Open_Data_Largescale_Boundaries__Local_Government_Districts_2012.shp' \
+    --lgd-srid=4326 \
+    --lge=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__District_Electoral_Areas_2012/OSNI_Open_Data_Largescale_Boundaries__District_Electoral_Areas_2012.shp' \
+    --lge-srid=29902 \
+    --lgw=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries_Wards_2012/OSNI_Open_Data_Largescale_Boundaries_Wards_2012.shp' \
+    --lgw-srid=4326 \
+    --eur=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__NI_Outline/OSNI_Open_Data_Largescale_Boundaries__NI_Outline.shp' \
+    --eur-srid=29902 \
+    --commit
+./manage.py mapit_UK_add_names_to_ni_areas
+./manage.py mapit_UK_find_parents --commit
+./manage.py mapit_UK_import_onspd do --crown-dependencies=include --northern-ireland=include ../data/ONSPD/Data/ONSPD_AUG_2015_UK.csv
+./manage.py mapit_UK_scilly --allow-no-location-postcodes \
+    --allow-terminated-postcodes ../data/ONSPD/Data/ONSPD_AUG_2015_UK.csv
+./manage.py loaddata uk_special_postcodes
+./manage.py mapit_UK_add_ons_to_gss
+./manage.py mapit_generation_activate --commit
+
+{% endhighlight %}
+
+Notes:
+
+* All commands with a `--commit` argument can be run without that argument to
+  do a dry run and see what would be imported
+* Pay attention to the filenames used in the `mapit_UK_import_boundary_line`,
+  `mapit_UK_import_osni`, `mapit_UK_import_onspd`, and `mapit_UK_scilly`
+  commands.  These are likely to change with newer releases so you'll have to
+  change the command to refer to the correct filenames.
+* Pay attention to the `--*-srid` options on the `mapit_UK_import_osni` command.
+  This refers to the projection that the data was released in and it may change
+  with new releases.  If the releases came from the mysociety cache you should find a `metadata.json` file in the OSNI folder that contains the SRID for
+  each file.  If you obtained new releases yourself you can load the shapefiles
+  in a tool such as [qgis](http://www.qgis.org/) to find the SRID yourself.
+* Many of these commands take options that you may wish to investigate to
+  customise the data imported to your database.
+
+For data released before Nov 2015
+---------------------------------
+
+We use Code-Point Open to import GB postcodes, ONSPD to import NI and crown dependency postcodes, and Boundary-Line to import GB shapes.  There is no NI shape data.
+
+1. Download the latest Code-Point Open, Boundary-Line and ONSPD from
+   <http://parlvid.mysociety.org/os/>, and save/unzip in the data directory.
+
+2. Run the following in order:
 
 {% highlight bash %}
 ./manage.py mapit_generation_create --commit --desc "Initial import."
@@ -38,27 +105,20 @@ Here are the basic instructions to install OS OpenData and ONSPD:
 ./manage.py mapit_generation_activate --commit
 {% endhighlight %}
 
-For notes on what was done to create generations as you can see on
-<http://mapit.mysociety.org/>, see the end of this file.
-
 Notes on future releases
 ------------------------
 
 What to run when new data is released:
 
-* Code-Point: `mapit_UK_import_codepoint` and `mapit_UK_scilly`
-* ONSPD, no NI boundary changes: `mapit_UK_import_nspd_ni`
-* ONSPD, NI boundary changes: `mapit_UK_import_nspd_ni_areas` then
-  `mapit_UK_import_nspd_ni` (though note the first script is incomplete, it
-  doesn't use a control file like `mapit_UK_import_boundary_line` does, as this
-  has not yet been needed);
+* ONSPD: `mapit_UK_import_onspd`
+* OSNI: Create a control file, `mapit_UK_import_osni` and `mapit_UK_find_parents`.
 * Boundary-Line: Create a control file, `mapit_UK_import_boundary_line` and
   `mapit_UK_find_parents`.
 
 You can manually increase the `generation_high_id` when something is new and
-something else isn't (most commonly, a new Boundary-Line means a new generation
+something else isn't.  For example a new Boundary-Line means a new generation
 for Great Britain, and you can then increase the Northern Ireland boundaries
-manually to be in the new generation).
+manually to be in the new generation and vice-versa for a new OSNI.
 
 Notes on creating what's live
 -----------------------------
