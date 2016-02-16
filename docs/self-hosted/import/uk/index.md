@@ -52,7 +52,7 @@ We use ONSPD to import all uk postcodes, Boundary-Line to import GB shapes, and 
     --commit
 ./manage.py mapit_UK_add_names_to_ni_areas
 ./manage.py mapit_UK_find_parents --commit
-./manage.py mapit_UK_import_onspd do --crown-dependencies=include --northern-ireland=include ../data/ONSPD/Data/ONSPD_AUG_2015_UK.csv
+./manage.py mapit_UK_import_onspd --crown-dependencies=include --northern-ireland=include ../data/ONSPD/Data/ONSPD_AUG_2015_UK.csv
 ./manage.py mapit_UK_scilly --allow-no-location-postcodes \
     --allow-terminated-postcodes ../data/ONSPD/Data/ONSPD_AUG_2015_UK.csv
 ./manage.py loaddata uk_special_postcodes
