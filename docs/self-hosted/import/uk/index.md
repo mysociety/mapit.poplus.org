@@ -41,13 +41,13 @@ We use ONSPD to import all uk postcodes, Boundary-Line to import GB shapes, and 
 ./manage.py mapit_UK_import_osni --control=mapit_gb.controls.first-gss \
     --wmc=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__Parliamentary_Constituencies_2008/OSNI_Open_Data_Largescale_Boundaries__Parliamentary_Constituencies_2008.shp \
     --wmc-srid=4326 \
-    --lgd=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__Local_Government_Districts_2012/OSNI_Open_Data_Largescale_Boundaries__Local_Government_Districts_2012.shp' \
+    --lgd=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__Local_Government_Districts_2012/OSNI_Open_Data_Largescale_Boundaries__Local_Government_Districts_2012.shp \
     --lgd-srid=4326 \
-    --lge=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__District_Electoral_Areas_2012/OSNI_Open_Data_Largescale_Boundaries__District_Electoral_Areas_2012.shp' \
+    --lge=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__District_Electoral_Areas_2012/OSNI_Open_Data_Largescale_Boundaries__District_Electoral_Areas_2012.shp \
     --lge-srid=29902 \
-    --lgw=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries_Wards_2012/OSNI_Open_Data_Largescale_Boundaries_Wards_2012.shp' \
+    --lgw=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries_Wards_2012/OSNI_Open_Data_Largescale_Boundaries_Wards_2012.shp \
     --lgw-srid=4326 \
-    --eur=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__NI_Outline/OSNI_Open_Data_Largescale_Boundaries__NI_Outline.shp' \
+    --eur=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__NI_Outline/OSNI_Open_Data_Largescale_Boundaries__NI_Outline.shp \
     --eur-srid=29902 \
     --commit
 ./manage.py mapit_UK_add_names_to_ni_areas
