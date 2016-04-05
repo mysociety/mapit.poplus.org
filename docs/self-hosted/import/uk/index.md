@@ -26,18 +26,17 @@ For data released after Nov 2015
 We use ONSPD to import all uk postcodes, Boundary-Line to import GB shapes, and OSNI to import NI shapes.  Code Point is not used.
 
 1. Download the latest Boundary-Line, ONSPD, and OSNI data from
-   <http://parlvid.mysociety.org/os/>, and save/unzip in the data directory.  You need to unzip the OSNI data twice as it contains zipped folders.
+   <http://parlvid.mysociety.org/os/>, and save/unzip into a data directory.
+   You need to unzip the OSNI data twice as it contains zipped folders.
 
-2. Run the following in order:
+2. Run the following in order (update any data paths as necessary):
 
 {% highlight bash %}
 ./manage.py mapit_generation_create --commit --desc "Initial import."
 ./manage.py loaddata uk
 ./manage.py mapit_UK_import_boundary_line \
     --control=mapit_gb.controls.first-gss --commit \
-    `ls ../data/Boundary-Line/Data/GB/**/*.shp | \
-    grep -v high_water | \
-    grep -Ev Supplementary_\[Historical\|Ceremonial\]`
+    `\ls ../data/Boundary-Line/Data/GB/*.shp|\grep -v high_water`
 ./manage.py mapit_UK_import_osni --control=mapit_gb.controls.first-gss \
     --wmc=../data/OSNI/OSNI_Open_Data_Largescale_Boundaries__Parliamentary_Constituencies_2008/OSNI_Open_Data_Largescale_Boundaries__Parliamentary_Constituencies_2008.shp \
     --wmc-srid=4326 \
@@ -83,9 +82,9 @@ For data released before Nov 2015
 We use Code-Point Open to import GB postcodes, ONSPD to import NI and crown dependency postcodes, and Boundary-Line to import GB shapes.  There is no NI shape data.
 
 1. Download the latest Code-Point Open, Boundary-Line and ONSPD from
-   <http://parlvid.mysociety.org/os/>, and save/unzip in the data directory.
+   <http://parlvid.mysociety.org/os/>, and save/unzip into a data directory.
 
-2. Run the following in order:
+2. Run the following in order (update any data paths as necessary):
 
 {% highlight bash %}
 ./manage.py mapit_generation_create --commit --desc "Initial import."
