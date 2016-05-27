@@ -40,7 +40,7 @@ necessary, depending on your version of PostGIS, but do check. \]
 
 You will also need a couple of other packages, so install them:
 
-    sudo apt-get install python-gdal ruby-sass
+    sudo apt-get install python-gdal
 
 
 Installation as a Django app
