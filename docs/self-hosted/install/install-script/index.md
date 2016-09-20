@@ -72,7 +72,7 @@ example:
 
     ubuntu@ip-10-64-6-199:~$ sudo su - mapit
     mapit@ip-10-64-6-199:~$ cd /var/www/mapit/mapit
-    mapit@ip-10-64-6-199:~$ source ../virtualenv-mapit/bin/activate
+    mapit@ip-10-64-6-199:~/mapit$ source ../virtualenv-mapit/bin/activate
     (mapit)mapit@ip-10-64-6-199:~/mapit$ ./manage.py createsuperuser
     Username (Leave blank to use 'mapit'): mapitadmin
     E-mail address: whoever@example.org
