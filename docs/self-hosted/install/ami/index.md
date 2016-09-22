@@ -13,9 +13,9 @@ Micro instance which will be [free for a
 year](http://aws.amazon.com/free/).
 
 The AMI can be found in the **EU West (Ireland)** region, with the ID
-`ami-85da50f2` and name "MapIt installation 2015-02-12".
+`ami-2099e353` and name "MapIt installation 2016-09-22".
 You can launch an instance based on that AMI with
-[this link](https://console.aws.amazon.com/ec2/home?region=eu-west-1#launchAmi=ami-85da50f2).
+[this link](https://console.aws.amazon.com/ec2/home?region=eu-west-1#launchAmi=ami-2099e353).
 
 When you create an EC2 instance based on that AMI, make sure that you
 choose Security Groups that allows at least inbound HTTP, HTTPS and
