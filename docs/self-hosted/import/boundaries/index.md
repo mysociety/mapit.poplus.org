@@ -29,10 +29,10 @@ Set things up
 4. Either visit the admin at http://127.0.0.1:8000/admin and add a generation
    there, with description 'Initial import', or run the following (which does
    the same thing):
-
-       ./manage.py mapit_generation_create \
-           --desc='Initial import' --commit
-
+   ```
+   ./manage.py mapit_generation_create \
+      --desc='Initial import' --commit
+   ```
    Generations are so you can load in boundary data that changes over time --
    you can import new versions of boundaries without them being actually 'live'
    until they're ready, and leave old versions available for people to use for
