@@ -79,12 +79,13 @@ Installation standalone with the example project
 
 * A standard git clone will get you the repository:
 
-        git clone git://github.com/mysociety/mapit.git
+        git clone --recurse-submodules git://github.com/mysociety/mapit.git
         cd mapit
 
 * Set up your configuration variables:
 
         cp conf/general.yml-example conf/general.yml
+
 Now edit `conf/general.yml` to point to your local postgresql database, and
 edit the other settings as per the documentation given in that file. If you
 don't know what `AREA_SRID` to use, delete that line or set it to `4326`.
@@ -93,7 +94,7 @@ don't know what `AREA_SRID` to use, delete that line or set it to `4326`.
 `mapit/countries/` you can see how to add specialised country-specific
 functions to validate postcodes etc.
 
-    If you're going to be importing big datasets, make sure that `DEBUG` is
+If you're going to be importing big datasets, make sure that `DEBUG` is
 `False`; otherwise, you'll run out of memory as it tries to remember all the
 SQL queries made during an import.
 
@@ -114,15 +115,19 @@ required packages:
         bin/mapit_make_css
         ./manage.py collectstatic
 
-* Create the database tables (do add an admin user when prompted, though you
-  can add one at any time with `./manage.py createsuperuser`):
+* Create the database tables:
 
         ./manage.py migrate mapit
+
+* This can be a good time to add an admin user (though you can do this later):
+
+        ./manage.py createsuperuser
 
 * Run the development server
 
         ./manage.py runserver
-(Alternatively, set up a live web server however you wish &ndash; see the Deployment
+
+(Alternatively, set up a live web server however you wish - see the Deployment
 Django documentation for details beyond the scope of this document.)
 
 You can then visit <http://localhost:8000/> and hopefully see the default MapIt
